@@ -1,3 +1,7 @@
+/**
+ * @author Rich Moore
+ */
+
 package me.rich.lib.time;
 
 public class GameTimer {
@@ -39,14 +43,18 @@ public class GameTimer {
 		return name;
 	}
 	
+	public void setName(String name) {
+		this.name = name;
+	}
+	
 	public void update() {
 		this.seconds++;
 		if (this.limited && !this.hasReachedLimit()) {
 			if (this.seconds > this.timeLimit) {
 				if (!(listener == null)) {
-					listener.onTimerFinish();
+					this.listener.onTimerFinish();
 				}
-				limitReached = true;
+				this.limitReached = true;
 			}
 		}
 	}

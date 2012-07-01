@@ -1,3 +1,7 @@
+/**
+ * @author Rich Moore
+ */
+
 package me.rich.lib.graphics;
 
 import java.awt.image.BufferedImage;

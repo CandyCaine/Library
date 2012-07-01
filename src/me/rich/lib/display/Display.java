@@ -1,3 +1,7 @@
+/**
+ * @author Rich Moore
+ */
+
 package me.rich.lib.display;
 
 import java.awt.Canvas;

@@ -1,3 +1,6 @@
+/**
+ * @author Rich Moore
+ */
 package me.rich.lib.loop;
 
 public interface GameLoopListener {

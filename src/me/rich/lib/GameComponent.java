@@ -1,3 +1,7 @@
+/**
+ * @author Rich Moore
+ */
+
 package me.rich.lib;
 
 import java.awt.Graphics;

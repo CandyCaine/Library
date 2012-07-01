@@ -1,3 +1,7 @@
+/**
+ * @author Rich Moore
+ */
+
 package me.rich.lib.states;
 
 import java.util.ArrayList;

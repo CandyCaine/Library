@@ -1,3 +1,7 @@
+/**
+ * @author Rich Moore
+ */
+
 package me.rich.lib.loop;
 
 import me.rich.lib.time.GameTimer;
