@@ -56,6 +56,10 @@ public abstract class GameComponent implements GameLoopListener {
 		return title;
 	}
 	
+	public Display getDisplay() {
+		return this.display;
+	}
+	
 	public void start() {
 		this.gameLoop.start();
 	}
