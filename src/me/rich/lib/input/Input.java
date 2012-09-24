@@ -12,6 +12,7 @@ import java.awt.event.KeyListener;
 import java.awt.event.MouseEvent;
 import java.awt.event.MouseListener;
 import java.awt.event.MouseMotionListener;
+import java.util.ArrayList;
 
 public class Input implements KeyListener, MouseListener, MouseMotionListener, FocusListener {
 
@@ -21,6 +22,8 @@ public class Input implements KeyListener, MouseListener, MouseMotionListener, F
 	private static boolean rightMouseButton;
 	private static boolean focus;
 	private static Point mousePos;
+	
+	private static ArrayList<InputListener> inputListener;
 	
 	public static enum MouseButton {
 		LEFT,
@@ -32,6 +35,7 @@ public class Input implements KeyListener, MouseListener, MouseMotionListener, F
 	public Input() {
 		keys = new boolean[1000];
 		mousePos = new Point(0, 0);
+		inputListener = new ArrayList<InputListener>();
 	}
 	
 	public static boolean isKeyDown(int key) {
@@ -73,6 +77,16 @@ public class Input implements KeyListener, MouseListener, MouseMotionListener, F
 		return mousePos.y;
 	}
 	
+	public static void addInputListener(InputListener listener) {
+		inputListener.add(listener);
+	}
+	
+	public static void removeInputListener(InputListener listener) {
+		if (inputListener.contains(listener)) {
+			inputListener.remove(listener);
+		}
+	}
+	
 	@Override
 	public void focusGained(FocusEvent e) {
 		focus = true;
@@ -95,6 +109,11 @@ public class Input implements KeyListener, MouseListener, MouseMotionListener, F
 
 	@Override
 	public void mouseClicked(MouseEvent e) {
+		for (InputListener listener : inputListener) {
+			if (listener.isAcceptingInput()) {
+				listener.onClick(e);
+			}
+		}
 	}
 
 	@Override
@@ -131,6 +150,11 @@ public class Input implements KeyListener, MouseListener, MouseMotionListener, F
 
 	@Override
 	public void keyTyped(KeyEvent e) {
+		for (InputListener listener : inputListener) {
+			if (listener.isAcceptingInput()) {
+				listener.onKeyTyped(e);
+			}
+		}
 	}
 
 	@Override
@@ -146,5 +170,5 @@ public class Input implements KeyListener, MouseListener, MouseMotionListener, F
 			keys[e.getKeyCode()] = false;
 		}		
 	}
-
+	
 }
